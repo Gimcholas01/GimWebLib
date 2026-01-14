@@ -1,80 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
+<!-- to be changed to use display grid -->
 
-        <style>
-            .dropdown {
-                cursor: pointer;
-            }
+<style>
+    .dropdown {
+        cursor: pointer;
+    }
 
-            .dropdown .title-wrapper {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
+    .dropdown .title-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-            .dropdown .title {
-                margin-bottom: 0;
-            }
+    .dropdown .title {
+        margin-bottom: 0;
+    }
 
-            .dropdown.active .plus,
-            .dropdown .minus {
-                display: none;
-            }
+    .dropdown.active .plus,
+    .dropdown .minus {
+        display: none;
+    }
 
-            .dropdown .plus,
-            .dropdown.active .minus {
-                display: block;
-            }
+    .dropdown .plus,
+    .dropdown.active .minus {
+        display: block;
+    }
 
-            .dropdown .description {
-                overflow: hidden;
-                height: 0;
-                transition: height 0.4s ease;
-            }
-        </style>
+    .dropdown .description {
+        overflow: hidden;
+        height: 0;
+        transition: height 0.4s ease;
+    }
+</style>
 
 
 
-        <div class="dropdown-wrapper">
+<div class="dropdown-wrapper">
 
-            <div class="dropdown">
-                <div class="title-wrapper">
-                    <h4 class="title">Your Dropdown Title Here</h4>
-                    <img class="plus" src="/wp-content/uploads/2025/11/plus.svg" alt="">
-                    <img class="minus" src="/wp-content/uploads/2025/11/minus.svg" alt="">
-                </div>
-                <div class="description">
-                    <p>Your Description Here</p>
-                </div>
-            </div>
-
+    <div class="dropdown">
+        <div class="title-wrapper">
+            <h4 class="title">Your Dropdown Title Here</h4>
+            <img class="plus" src="/wp-content/uploads/2025/11/plus.svg" alt="">
+            <img class="minus" src="/wp-content/uploads/2025/11/minus.svg" alt="">
         </div>
+        <div class="description">
+            <p>Your Description Here</p>
+        </div>
+    </div>
+
+</div>
 
 
-        <script>
-            function initializeDropdown() {
-                document.querySelectorAll('.dropdown').forEach(dropdown => {
-                    const desc = dropdown.querySelector('.description');
+<script>
+    function initializeDropdown() {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            const desc = dropdown.querySelector('.description');
 
-                    dropdown.addEventListener('click', () => {
-                        const isActive = dropdown.classList.toggle('active');
+            dropdown.addEventListener('click', () => {
+                const isActive = dropdown.classList.toggle('active');
 
-                        if (isActive) {
-                            desc.style.height = desc.scrollHeight + 'px';
-                        } else {
-                            desc.style.height = '0';
-                        }
-                    });
-                });
-            }
-        </script>
-
-    </body>
-</html>
+                if (isActive) {
+                    desc.style.height = desc.scrollHeight + 'px';
+                } else {
+                    desc.style.height = '0';
+                }
+            });
+        });
+    }
+</script>

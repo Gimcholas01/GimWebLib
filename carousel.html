@@ -1,0 +1,61 @@
+<style>
+    .module-carousel {
+        margin-top: 4vw;
+        position: relative;
+    }
+
+    .carousel {
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: space-around;
+        min-width: 200vw;
+        animation: carousel 10s linear infinite;
+    }
+
+    @keyframes carousel {
+        from {left: -100%;}
+        to {left: 0%;}
+    }
+
+    .carousel img {
+        width: 13vw;
+        height: 13vw;
+        background-color: white;
+        padding: 2vw;
+        box-sizing: border-box;
+        border-radius: 100%;
+        object-fit: contain;
+        overflow: visible;
+
+        @media (max-width: 768px) {
+            width: 30vw;
+            height: 30vw;
+        }
+    }
+</style>
+
+<div class="module-carousel">
+    <div class="carousel">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+    </div>
+</div>
+
+<script>
+    function initCarousel() {
+        const carousel = $('.carousel')
+        const carouselChilds = carousel.children()
+        carouselChilds.clone().appendTo(carousel);
+
+        var childHeight = carousel.outerHeight();
+        $('.module-carousel').height(childHeight);
+    }
+
+
+    jQuery(document).ready(function ($) {
+        initCarousel();
+    });
+</script>
