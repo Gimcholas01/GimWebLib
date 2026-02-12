@@ -1,28 +1,34 @@
 <style>
-    .module-carousel {
-        margin-top: 4vw;
-        position: relative;
+
+    body {
+        width: 100vw;
+        overflow-x: hidden;
     }
 
-    .carousel {
+    .module-carousel-bb {
+        position: relative;
+        width: 100%;
+    }
+
+    .carousel-bb {
         position: absolute;
         top: 0;
         display: flex;
         justify-content: space-around;
         min-width: 200vw;
-        animation: carousel 10s linear infinite;
+        animation: carousel-bb 10s linear infinite;
     }
 
-    @keyframes carousel {
-        from {left: -100%;}
-        to {left: 0%;}
+    @keyframes carousel-bb {
+        from { transform: translateX(-50%); }
+        to   { transform: translateX(0%); }
     }
 
-    .carousel img {
+    .carousel-bb img {
         width: 13vw;
         height: 13vw;
         background-color: white;
-        padding: 2vw;
+        padding: 2vw; /* Set Gap Here */
         box-sizing: border-box;
         border-radius: 100%;
         object-fit: contain;
@@ -35,8 +41,10 @@
     }
 </style>
 
-<div class="module-carousel">
-    <div class="carousel">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<div class="module-carousel-bb">
+    <div class="carousel-bb">
         <img src="" alt="">
         <img src="" alt="">
         <img src="" alt="">
@@ -46,12 +54,12 @@
 
 <script>
     function initCarousel() {
-        const carousel = $('.carousel')
+        const carousel = $('.carousel-bb')
         const carouselChilds = carousel.children()
         carouselChilds.clone().appendTo(carousel);
 
         var childHeight = carousel.outerHeight();
-        $('.module-carousel').height(childHeight);
+        $('.module-carousel-bb').height(childHeight);
     }
 
 
