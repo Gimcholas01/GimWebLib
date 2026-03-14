@@ -15,7 +15,7 @@
 
 <div id="bb-module-popup">
     <div class="close-popup">
-        <img src="/wp-content/uploads/2026/03/button-close.svg" alt="">
+        <img src="" alt="">
     </div>
     <div class="content">
     </div>
@@ -50,7 +50,7 @@
 
         injectElementsWithClass.forEach(elementClass => {
             const injectElement = getElementWithin(clickedElement, elementClass);
-            $('#bb-module-popup').append(injectElement);
+            $('#bb-module-popup .content').append(injectElement);
         });
     }
 
@@ -69,7 +69,7 @@
     }
 
     function clearPopup() {
-        $('#bb-module-popup .content').remove();
+        $('#bb-module-popup .content').empty();
     }
 
 
