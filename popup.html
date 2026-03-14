@@ -1,0 +1,80 @@
+<style>
+    #bb-module-popup {
+        position: fixed;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        display: none;
+        background-color: white;
+    }
+
+    #bb-module-popup.active {
+        display: block;
+    }
+</style>
+
+<div id="bb-module-popup">
+    <div class="close-popup">
+        <img src="/wp-content/uploads/2026/03/button-close.svg" alt="">
+    </div>
+    <div class="content">
+    </div>
+</div>
+
+<script>
+    const classToTriggerPopup = '.module-people';
+    const injectElementsWithClass = ['.background', '.people-details'];
+
+
+
+    function initializePopup() {
+        appendPopupToWpWrapper();
+        $( "#bb-module-popup .close-popup" ).on( "click", closePopup);
+
+        $(classToTriggerPopup).on("click", function() {
+            triggerOnClick($(this));
+        });
+    }
+
+    function appendPopupToWpWrapper() {
+        $('#Wrapper').append($('#bb-module-popup'))
+    }
+
+    function triggerOnClick(clickedElement) {
+        injectToPopup(clickedElement);
+        openPopup();
+    }
+
+    function injectToPopup(clickedElement) {
+        clearPopup();
+
+        injectElementsWithClass.forEach(elementClass => {
+            const injectElement = getElementWithin(clickedElement, elementClass);
+            $('#bb-module-popup').append(injectElement);
+        });
+    }
+
+    function getElementWithin(clickedElement, findClass) {
+        const injectElementObject = clickedElement.find(findClass);
+        const injectElement = injectElementObject.clone(true);
+        return injectElement;
+    }
+
+    function closePopup() {
+        $('#bb-module-popup').removeClass('active');
+    }
+
+    function openPopup() {
+        $('#bb-module-popup').addClass('active');
+    }
+
+    function clearPopup() {
+        $('#bb-module-popup .content').remove();
+    }
+
+
+
+    $(document).ready(function() {
+        initializePopup()
+    });
+</script>
