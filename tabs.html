@@ -1,0 +1,76 @@
+<script>
+    function initTabs() {
+        if (!document.getElementById('tabs-button')) return;
+
+        const tabs = Array.from(document.getElementById('tabs-button').children);
+        tabs[0].classList.add("active");
+        activeSlide(0);
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                activeSlide(index);
+            });
+        });
+    }
+
+    function pillarReset() {
+        resetActiveTabs();
+        resetActiveSlides();
+    }
+
+    function resetActiveTabs() {
+        const tabs = Array.from(document.getElementById('tabs-button').children);
+
+        tabs.forEach(tab => {
+            tab.classList.remove("active");
+        });
+    }
+
+    function resetActiveSlides() {
+        const slides = document.querySelectorAll('.module-slide');
+
+        slides.forEach(slide => {
+            slide.classList.remove("active");
+        });
+    }
+
+    function activeSlide(index) {
+        pillarReset();
+
+        const tabs = Array.from(document.getElementById('tabs-button').children);
+        tabs[index].classList.add("active");
+
+        const pillarSlides = document.querySelectorAll('.module-slide');
+        pillarSlides[index].classList.add("active");
+    }
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initTabs();
+    });
+</script>
+
+
+<div class="module-property-slides">
+
+    <div id="tabs-button">
+        <h2>Tab Name 1</h2>
+        <h2>Tab Name 2</h2>
+        ...
+    </div>
+
+    <div class="slides">
+
+        <div class="module-slide">
+            <div>Your Slide Content Here 1</div>
+            ...
+        </div>
+
+        <div class="module-slide">
+            <div>Your Slide Content Here 2</div>
+            ...
+        </div>
+
+    </div>
+</div>
