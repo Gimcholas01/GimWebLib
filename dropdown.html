@@ -1,31 +1,25 @@
-<!-- to be changed to use display grid -->
-
 <style>
-    .dropdown {
+    .bb-dropdown {
         cursor: pointer;
     }
 
-    .dropdown .title-wrapper {
+    .bb-dropdown .title-wrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .dropdown .title {
-        margin-bottom: 0;
-    }
-
-    .dropdown.active .plus,
-    .dropdown .minus {
+    .bb-dropdown.active .plus,
+    .bb-dropdown .minus {
         display: none;
     }
 
-    .dropdown .plus,
-    .dropdown.active .minus {
+    .bb-dropdown .plus,
+    .bb-dropdown.active .minus {
         display: block;
     }
 
-    .dropdown .description {
+    .bb-dropdown .description {
         overflow: hidden;
         height: 0;
         transition: height 0.4s ease;
@@ -36,7 +30,7 @@
 
 <div class="dropdown-wrapper">
 
-    <div class="dropdown">
+    <div class="bb-dropdown">
         <div class="title-wrapper">
             <h4 class="title">Your Dropdown Title Here</h4>
             <img class="plus" src="/wp-content/uploads/2025/11/plus.svg" alt="">
@@ -52,18 +46,23 @@
 
 <script>
     function initializeDropdown() {
-        document.querySelectorAll('.dropdown').forEach(dropdown => {
+        const dropdowns = document.querySelectorAll('.bb-dropdown');
+        if (!dropdowns.length) return;
+
+        dropdowns.forEach(dropdown => {
             const desc = dropdown.querySelector('.description');
+            if (!desc) return;
 
             dropdown.addEventListener('click', () => {
-                const isActive = dropdown.classList.toggle('active');
-
-                if (isActive) {
-                    desc.style.height = desc.scrollHeight + 'px';
-                } else {
-                    desc.style.height = '0';
+                try {
+                    const isActive = dropdown.classList.toggle('active');
+                    desc.style.height = isActive ? desc.scrollHeight + 'px' : '0';
+                } catch (err) {
+                    console.error('Dropdown toggle failed:', err);
                 }
             });
         });
     }
+
+    document.addEventListener('DOMContentLoaded', initializeDropdown);
 </script>
